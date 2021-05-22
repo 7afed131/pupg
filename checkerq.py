@@ -4,6 +4,7 @@ import random
 import secrets
 import colorama 
 import uuid
+import os
 from time import sleep
 import string
 d = 0
@@ -74,3 +75,8 @@ for combo in combos:
         print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
     elif '"msg":"wrong password!"' in r2.text:
         print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
+os.system( rm -rif acc.txt )
+
+os.system( python3 gen.py )
+
+os.system( python3 checkerq.py )       
