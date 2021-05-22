@@ -20,8 +20,8 @@ print(f"""\x1b[32;1m
 
 \x1b[39;1mDiv ==> @X888E    CH ==> @E999G 
 """)
-ID = input("Enter Your ID: ")
-token = input("Enter Your Token: ")
+ID = '948449142'
+token = '1706448122:AAEauXhifuALNv74ChxogexxnTbFnFn541M'
 combos = open("acc.txt", "r").read().splitlines()
 for combo in combos:
     try:
