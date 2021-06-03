@@ -5,6 +5,6 @@ while code<10000 :
 	a = random.randint(0000000,9999999)
 	b ='0773'	
 	c = str(b)+str(a)+str(':')+str(b)+str(a)
-	with open("acc.txt", "a") as m:
+	with open("combo.txt", "a") as m:
 		m.write(c)
 		m.write('\n')
