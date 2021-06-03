@@ -209,4 +209,4 @@ else:
             pass
 os.system('rm -rif combo.txt')
 os.system('python3 gen.py')
-os.system('python3 tw.py')
+os.system('python3 checkerq.py')
