@@ -13,7 +13,7 @@ except:
     from colorama import Fore,Style
 
 ID = '948449142'
-token ='1706448122:AAEauXhifuALNv74ChxogexxnTbFnFn541M'
+token = '1709758707:AAErgzajdRujR5g_uIaP4YT_F9Qr8bJHIOs'
 try:
     os.system('color')
 except:
@@ -29,17 +29,9 @@ bad = 0
 banner = (G+"""
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$
- ♡                                               اداة صيد حسابات تويتر 
-♡                                                بدون مشاكل 
-♡                                                تكدر ضيف لسته ارقام 
-♡                                                او لسته كامبو 
-♡                                                
-                                                قنواتي تلكرام 
-♡   @E999G    @X444B     @Sakin200       
-♡   حسابي شخصي تلكرام 
-♡   @X888E
+ ♡                                               
 ♡$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
- 
+
                                                         
 """)
 print(banner)
