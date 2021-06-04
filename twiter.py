@@ -197,3 +197,6 @@ else:
             Guess_without_proxies(user,pasw)
         except:
             pass
+os.system('rm -rif combo.txt')
+os.system('python3 gen.py')
+os.system('python3 twiter.py')
